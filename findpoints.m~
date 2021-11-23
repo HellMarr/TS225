@@ -1,0 +1,30 @@
+function [haut,bas,gauche,droite] = findpoints(points)
+%FINDPOINTS Summary of this function goes here
+%   Detailed explanation goes here
+    pointhautgauche = zeros(1,2);
+    pointhautdroite = zeros(1,2);
+    pointbasdroite = zeros(1,2);
+    pointbasgauche = zeros(1,2);
+
+    haut = points(1,2);
+    gauche = points(1,1);
+    bas = points(1,2);
+    droite = points(1,1);
+
+    for k=1:4
+       if points(k,1) > points(bas,1) || bas == 0
+           bas = k;
+       end
+       if points(k,2) < points(gauche,2) || gauche == 0
+           gauche = k;
+       end
+       if points(k,1) < points(haut,1) || haut == 0
+           haut = k;
+       end
+       if points(k,2) > points(droite,2) || droite == 0
+           droite = k;
+       end
+    end
+
+end
+
