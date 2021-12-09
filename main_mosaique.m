@@ -5,10 +5,20 @@ clear
 img_src = double(imread('./Img/kremlin.jpg'));
 [h_src,w_src,z_src] = size(img_src);
 
-img1 = img_src(1:1000,1:2000,:);
-img2 = img_src(800:1800,1200:2600,:);
 
-[H,coo] = find_H(img1,img2); 
+figure,
+imagesc(uint8(img_src));
+[X1,Y1] = ginput(4);
+close;
+img1 = img_src(min(floor(Y1)):max(floor(Y1)),min(floor(X1)):max(floor(X1)),:);
+
+figure,
+imagesc(uint8(img_src));
+[X2,Y2] = ginput(4);
+close;
+img2 = img_src(min(floor(Y2)):max(floor(Y2)),min(floor(X2)):max(floor(X2)),:);
+
+%[H,coo] = find_H(img1,img2); 
 
 % dim = 1000;
 % img_dest = cat(3,zeros(dim),zeros(dim),zeros(dim));

@@ -2,7 +2,7 @@ close all
 clc
 clear
 
-img_src = double(imread('./Img/portrait'));
+img_src = double(imread('./Img/bo.jpg'));
     [h_src,w_src,z_src] = size(img_src);
     img_dest = double(imread('./Img/avenue'));
     [h_dest,w_dest,z_dest] = size(img_dest);
