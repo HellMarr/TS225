@@ -19,16 +19,13 @@ img_src = double(imread('./Img/kremlin.jpg'));
 
 %[H,coo] = find_H(img1,img2); 
 
-img1 = img_src(1:1000,1:2000,:);
-[h1,w1,z1] = size(img1);
-mask1 = ones(h1,w1);
-boite1 = [1,1;w1,h1];
-img2 = img_src(800:1800,1200:2600,:);
-[h2,w2,z2] = size(img2);
-mask2 = ones(h2,w2);
-boite2 = [1,1;w2,h2];
+[img1,mask1,boite1]=imb(img_src(1:1000,1:2000,:));
+[img2,mask2,boite2]=imb(img_src(800:1800,1200:2600,:));
 
-[img1,mask1,boite1] = etape_2(img1,mask1,boite1,img2,mask2,boite2);
+H12 = [0.029314227862646,0.438942937014629,2.953225383575869e+02;0.354925443585198,0.101191677121572,2.697748273876351e+02;1.801520665771357e-04,-2.323609677897337e-04,1];
+coo2 = [1686,874;1867,877;1690,957;1848,960];
+%[H12,coo2] = find_H(img1,img2);
+[img1,mask1,boite1] = new_imb(img1,mask1,boite1,img2,false,H12,coo2);
 
 
 %[H2,coo2] = find_H(img2,img1);
@@ -49,7 +46,7 @@ boite2 = [1,1;w2,h2];
 %     for j=1:w1+w2-max_y
 %         if k < h1 && j < w1
 %            mask(k,j,:) = img1(k,j,:);
-%         end
+%    0.029314227862646     end
 %         if k > h1-max_x && j > w1-max_y 
 %            mask(k,j,:) = img2(k-h1+max_x,j-w1+max_y,:); 
 %         end

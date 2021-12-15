@@ -3,9 +3,10 @@ clc
 clear
 
 img_src = double(imread('./Img/bo.jpg'));
-    [h_src,w_src,z_src] = size(img_src);
-    img_dest = double(imread('./Img/avenue'));
-    [h_dest,w_dest,z_dest] = size(img_dest);
+[h_src,w_src,z_src] = size(img_src);
+img_dest = double(imread('./Img/avenue'));
+[h_dest,w_dest,z_dest] = size(img_dest);
+
 img_finale = img_dest;
 for k=1:1
     [H,coo] = find_H(img_dest,img_src); 
