@@ -1,5 +1,5 @@
 function new_boite = find_new_boite(H,boite)
-    coord= [boite(1,:);boite(2,1),boite(1,1);boite(1,2),boite(2,2);boite(2,:)];
+    coord= [boite(1,:);boite(2,1),boite(1,2);boite(1,1),boite(2,2);boite(2,:)];
     for i=1:4
         [x(i),y(i)] = homographie(H,coord(i,1),coord(i,2));
     end

@@ -1,26 +1,20 @@
 function [H,coo_dest] = find_H(img_dest,img_src)
     H = ones(3);
-    coo1 = zeros(4,2);
-    coo2 = zeros(4,2);
     %Prise des points en zigzag
     figure,
     imagesc(uint8(img_src));
+    title("Image source");
     [X2,Y2] = ginput(4);
-    coo2 = [Y2 X2];
+    coo2 = [X2 Y2];
     close;
     
     figure,
     imagesc(uint8(img_dest));
+    title("Image destination");
     [X1,Y1] = ginput(4);
     coo1 = [X1 Y1];
     coo_dest = floor(coo1);
     close;
-    
-    
-%     imagesc(img2);
-%     for i=1:4
-%         [coo2(i,1),coo2(i,2)] = ginput(1);
-%     end
     
     A = zeros(8);
     B = zeros(8,1);
