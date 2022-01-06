@@ -25,12 +25,8 @@ function [H,coo_dest] = find_H(img_dest,img_src)
     A = zeros(8);
     B = zeros(8,1);
     
-    ind = 1;
-    for i=1:4
-        for j=1:2
-            B(ind) = coo2(i,j);
-            ind = ind + 1;
-        end
+    for i=1:2:8
+        B(i:i+1) = coo2(ceil(i/2),:); 
     end
     
     for i=1:4
