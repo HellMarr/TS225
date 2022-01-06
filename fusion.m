@@ -1,4 +1,4 @@
-function triplet_f = fusion(triplet1,triplet2)
+function triplet_f = fusion(triplet1,triplet2,triplet3,bool)
     triplet_f = struct('img',[],'mask',[],'boite',[]);
     
     img1 = triplet1.img;
@@ -14,6 +14,17 @@ function triplet_f = fusion(triplet1,triplet2)
     y_min = min(boite1(1,2),boite2(1,2));
     y_max = max(boite1(2,2),boite2(2,2));
     
+    if bool
+        img3 = triplet3.img;
+        mask3 = triplet3.mask;
+        boite3 = triplet3.boite;
+        
+        x_min = min([boite1(1,1),boite2(1,1),boite3(1,1)]);
+        x_max = max([boite1(2,1),boite2(2,1),boite3(2,1)]);
+        y_min = min([boite1(1,2),boite2(1,2),boite3(1,2)]);
+        y_max = max([boite1(2,2),boite2(2,2),boite3(2,2)]);
+    end
+    
     boite_f = [x_min y_min; x_max y_max];
     mask_f = zeros(y_max-y_min+1,x_max-x_min+1);
     img_f = zeros(y_max-y_min+1,x_max-x_min+1,3);
@@ -27,6 +38,14 @@ function triplet_f = fusion(triplet1,triplet2)
     %Addition pour la partie commune
     mask_f(boite2(1,2)-y_min+1:boite2(2,2)-y_min+1,boite2(1,1)-x_min+1:boite2(2,1)-x_min+1)= ...
     mask_f(boite2(1,2)-y_min+1:boite2(2,2)-y_min+1,boite2(1,1)-x_min+1:boite2(2,1)-x_min+1)+mask2;
+
+    if bool
+        img_f(boite3(1,2)-y_min+1:boite3(2,2)-y_min+1,boite3(1,1)-x_min+1:boite3(2,1)-x_min+1,:)= ...
+        img_f(boite3(1,2)-y_min+1:boite3(2,2)-y_min+1,boite3(1,1)-x_min+1:boite3(2,1)-x_min+1,:)+img3;
+    
+        mask_f(boite3(1,2)-y_min+1:boite3(2,2)-y_min+1,boite3(1,1)-x_min+1:boite3(2,1)-x_min+1)= ...
+        mask_f(boite3(1,2)-y_min+1:boite3(2,2)-y_min+1,boite3(1,1)-x_min+1:boite3(2,1)-x_min+1)+mask3;
+    end
  
     %Utilisation du mask final
     for i=1:h
