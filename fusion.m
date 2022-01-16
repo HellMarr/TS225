@@ -6,7 +6,7 @@ function triplet_f = fusion(triplet1,triplet2,varargin)
     min_y = NaN;
     max_x = NaN;
     max_y = NaN;
-    if nargin-2 > 0
+    if nargin > 2
         for k=1:nargin-2
             min_x = min(min_x,varargin{k}.boite(1,1));
             min_y = min(min_y,varargin{k}.boite(1,2));
@@ -44,7 +44,7 @@ function triplet_f = fusion(triplet1,triplet2,varargin)
     mask_f(boite2(1,2)-y_min+1:boite2(2,2)-y_min+1,boite2(1,1)-x_min+1:boite2(2,1)-x_min+1)+mask2;
 
     %Pour mosaïque à plus de 2 images
-    if nargin-2 > 0
+    if nargin > 2
         for k=1:nargin-2
             img = varargin{k}.img;
             mask = varargin{k}.mask;

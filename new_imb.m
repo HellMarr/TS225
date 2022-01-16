@@ -22,7 +22,5 @@ function triplet = new_imb(triplet_source,H)
     triplet.img = img;
     triplet.mask = mask;
     triplet.boite = boite;
-    figure;
-    imagesc(uint8(img))
 end
 
