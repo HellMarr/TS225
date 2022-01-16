@@ -3,14 +3,12 @@ function [H,coo_dest] = find_H(img_dest,img_src)
     %Prise des points en zigzag
     figure,
     imshow(uint8(img_src));
-    title("Image source");
     [X2,Y2] = ginput(4);
     coo2 = [X2 Y2];
     close;
     
     figure,
     imshow(uint8(img_dest));
-    title("Image destination");
     [X1,Y1] = ginput(4);
     coo1 = [X1 Y1];
     coo_dest = floor(coo1);

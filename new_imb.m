@@ -1,16 +1,10 @@
-function triplet = new_imb(triplet1,img2,flag,H12,coo)
+function triplet = new_imb(triplet_source,H)
     triplet = struct('img',[],'mask',[],'boite',[]);
-    img1 = triplet1.img;
-    mask1 = triplet1.mask;
-    boite1 = triplet1.boite;
+    img1 = triplet_source.img;
+    mask1 = triplet_source.mask;
+    boite1 = triplet_source.boite;
     [h1,w1,z1] = size(img1);
     
-    if flag
-        [H,coo2] = find_H(img1,img2);
-    else
-        coo2 = coo;
-        H = H12;
-    end
     boite = find_new_boite(H,boite1);
     mask = zeros(boite(2,2)-boite(1,2)+1,boite(2,1)-boite(1,1)+1);
     img = zeros(boite(2,2)-boite(1,2)+1,boite(2,1)-boite(1,1)+1,3);
